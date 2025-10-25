@@ -43,7 +43,7 @@
         </constraints>
         <properties>
           <horizontalTextPosition value="0"/>
-          <text value="Update Student Details"/>
+          <text value="Search and Update Student Details"/>
         </properties>
       </component>
       <component id="5660" class="javax.swing.JButton" binding="deleteButton">
