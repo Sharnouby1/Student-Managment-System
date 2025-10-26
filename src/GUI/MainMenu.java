@@ -33,7 +33,8 @@ public class MainMenu extends JFrame {
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                dispose();
+                new ViewStudents();
             }
         });
         updateButton.addActionListener(new ActionListener() {
