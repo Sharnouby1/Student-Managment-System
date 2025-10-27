@@ -48,7 +48,7 @@ public class MainMenu extends JFrame {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+new Delete();
             }
         });
         exitButton.addActionListener(new ActionListener() {
