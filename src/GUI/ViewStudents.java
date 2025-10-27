@@ -28,6 +28,7 @@ public class ViewStudents extends JFrame {
         model.addColumn("GPA");
         Student[] Students = new Student().viewAllStudents();
         for(int i = 0; i < Students.length; i++) {
+            System.out.println(Students[i].getId());
             model.addRow(new Object[]{ i+1 ,Students[i].getId(),Students[i].getFullName(),
                     Students[i].getAge(),Students[i].getGender(),Students[i].getDepartment(),
                     Students[i].getGpa()});

@@ -31,6 +31,7 @@ public class StudentsDatabase extends AbstractDatabase<Student> {
         String[] parts = line.split(",");
 
         if(parts.length != 6){
+            System.out.println(line);
             System.out.println("Incorrect line format!");
             return null;
         }
@@ -85,9 +86,8 @@ public class StudentsDatabase extends AbstractDatabase<Student> {
         }
         else{
             for (int i = 0; i < this.records.size(); i++) {
-                if (this.records.get(i).getId().equals(key)) {
+                if (this.records.get(i).getId().equals(key)||this.records.get(i).getFullName().equals(key)) {
                     this.records.remove(i);
-                    System.out.println("Student with the ID " + key + " has been deleted");
                     return;
                 }
             }

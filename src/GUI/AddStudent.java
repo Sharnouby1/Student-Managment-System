@@ -145,6 +145,7 @@ public class AddStudent extends JFrame {
                         Float.parseFloat(GPAText.getText()));
                 if(student.addStudent(student)){
                     JOptionPane.showMessageDialog(null, "Student added successfully");
+                new MainMenu();
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "The Student with ID "+IDText.getText()+" Already exists!");

@@ -108,7 +108,7 @@ if(!deleteByIDRadioButton.isSelected() &&!deleteByNameRadioButton.isSelected()){
                 } else if (deleteByNameRadioButton.isSelected()) {
 
                     if(s.contains(inputsearch.getText())) {
-                    //   student.deleteStudentByName(inputsearch.getText());
+                      student.deleteStudentByName(inputsearch.getText());
                         dispose();
                         JOptionPane.showMessageDialog(null, "Student deleted successfully");
                         new ViewStudents();
