@@ -1,5 +1,8 @@
 package GUI;
 
+import database.StudentsDatabase;
+import model.Student;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -16,9 +19,9 @@ public class SearchAndUpdate extends JFrame {
     private JLabel PressToSortMessage;
     private JTextField SearchField;
     private JLabel SearchMessage;
-    private JRadioButton SearchByNameRadioButton;
+    public JRadioButton SearchByNameRadioButton;
     private JButton SearchButton;
-    private JRadioButton SearchByIDRadio;
+    public JRadioButton SearchByIDRadio;
 
     public SearchAndUpdate() {
         DefaultTableModel model = new DefaultTableModel();
@@ -29,9 +32,12 @@ public class SearchAndUpdate extends JFrame {
         model.addColumn("Gender");
         model.addColumn("Department");
         model.addColumn("GPA");
-        model.addRow(new Object[]{"1", "9123" ,"Ahmed Salah", "20", "Male", "CSE", "3.5"});
-        model.addRow(new Object[]{"2", "1234", "Sara Ali", "21", "Female", "ECE", "3.8"});
-        model.addRow(new Object[]{"3", "12322" ,"Omar Hassan", "22", "Male", "ME", "3.2"});
+        Student[] Students = new Student().viewAllStudents();
+        for(int i = 0; i < Students.length; i++) {
+            model.addRow(new Object[]{ i+1 ,Students[i].getId(),Students[i].getFullName(),
+                    Students[i].getAge(),Students[i].getGender(),Students[i].getDepartment(),
+                    Students[i].getGpa()});
+        }
         Table.setModel(model);
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
         Table.setRowSorter(sorter);
@@ -66,11 +72,54 @@ public class SearchAndUpdate extends JFrame {
             }
         });
 
-        SearchButton.addActionListener(new ActionListener() {
+
+        SearchByIDRadio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(SearchByIDRadio.isSelected()) {
+                    SearchByNameRadioButton.setSelected(false);
+                }
+            }
+        });
+        SearchByNameRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(SearchByNameRadioButton.isSelected()) {
+                    SearchByIDRadio.setSelected(false);
+                }
+            }
+        });
+        SearchField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
+        });
+        SearchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StudentsDatabase s=new StudentsDatabase("Students.txt");
+                s.readFromFile();
+                if(!SearchByIDRadio.isSelected()&&!SearchByNameRadioButton.isSelected()) {
+                    JOptionPane.showMessageDialog(null, "Please Select a Search Button");
+
+                }
+                if(SearchByIDRadio.isSelected()) {
+                    if(s.contains(SearchField.getText())) {
+                    dispose();
+                    new Update(SearchField.getText());}
+                    else
+                        JOptionPane.showMessageDialog(null, "The ID Not Found");
+                }
+                else if(SearchByNameRadioButton.isSelected()) {
+                    if(s.contains(SearchByNameRadioButton.getText())) {
+
+                        dispose();
+                        new Update(SearchField.getText());
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "The Name Not Found");
+            }}
         });
     }
 }
