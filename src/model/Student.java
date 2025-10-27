@@ -100,11 +100,30 @@ public class Student {
     }
 
 
-    public void searchStudentById(String key) {
+    public void searchStudentById(String password) {
         StudentsDatabase db = new StudentsDatabase("Students.txt");
         db.readFromFile();
 
-        Student s = db.getRecord(key);
+        Student s = db.getRecord(password);
+
+        if (s == null) {
+            System.out.println("Student not found!");
+        } else {
+            System.out.println("FOUND:");
+            System.out.println("ID: " + s.id);
+            System.out.println("Name: " + s.fullName);
+            System.out.println("Age: " + s.age);
+            System.out.println("Gender: " + s.gender);
+            System.out.println("Department: " + s.department);
+            System.out.println("GPA: " + s.gpa);
+        }
+    }
+
+    public void searchStudentByName(String fullName) {
+        StudentsDatabase db = new StudentsDatabase("Students.txt");
+        db.readFromFile();
+
+        Student s = db.getRecord(fullName);
 
         if (s == null) {
             System.out.println("Student not found!");
