@@ -130,14 +130,18 @@ public class Update extends JFrame {
                         , Objects.requireNonNull(GenderCombo.getSelectedItem()).toString(),
                         Objects.requireNonNull(DepartmentCombo.getSelectedItem()).toString(),
                         Float.parseFloat(GPAText.getText()));
-                    student.addStudent(student);
+                    if(student.addStudent(student)){
+                    JOptionPane.showMessageDialog(null, "Student Updated");
                     student.deleteStudentByName(str);
                     student.deleteStudentById(str);
-
                     dispose();
-                    JOptionPane.showMessageDialog(null, "Student Updated");
-dispose();
-new ViewStudents();
+                    new ViewStudents();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Student Not Updated");
+                        dispose();
+                        new SearchAndUpdate();
+                    }
 
 
         }
