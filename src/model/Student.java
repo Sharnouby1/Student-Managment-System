@@ -35,6 +35,50 @@ public class Student {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public float getGpa() {
+        return gpa;
+    }
+
+    public void setGpa(float gpa) {
+        this.gpa = gpa;
+    }
+
     public String StudentRepresentation() {
         return (id + "," + fullName + "," + age + "," + gender + "," + department + "," + gpa);
     }
@@ -166,47 +210,21 @@ public class Student {
         return true;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public boolean deleteStudentByName(String fullName) {
+        StudentsDatabase db = new StudentsDatabase("Students.txt");
+        db.readFromFile();
+
+        if (!db.contains(fullName)) {
+            System.out.println("Student not found!");
+            return false;
+        }
+
+        db.deleteRecord(fullName);
+        db.saveToFile();
+
+        System.out.println("Student deleted successfully!");
+        return true;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public float getGpa() {
-        return gpa;
-    }
-
-    public void setGpa(float gpa) {
-        this.gpa = gpa;
-    }
 }
