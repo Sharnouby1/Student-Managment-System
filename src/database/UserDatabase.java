@@ -32,7 +32,6 @@ public class UserDatabase {
         String[] parts = line.split(",");
 
         if (parts.length != 2) {
-            System.out.println("Incorrect line format!");
             return null;
         }
         return new User(parts[0], parts[1]);

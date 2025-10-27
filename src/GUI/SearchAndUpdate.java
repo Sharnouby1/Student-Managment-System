@@ -112,10 +112,9 @@ public class SearchAndUpdate extends JFrame {
                         JOptionPane.showMessageDialog(null, "The ID Not Found");
                 }
                 else if(SearchByNameRadioButton.isSelected()) {
-                    if(s.contains(SearchByNameRadioButton.getText())) {
-
-                        dispose();
+                    if(s.contains(SearchField.getText())) {
                         new Update(SearchField.getText());
+                        dispose();
                     }
                     else
                         JOptionPane.showMessageDialog(null, "The Name Not Found");

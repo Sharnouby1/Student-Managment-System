@@ -26,6 +26,8 @@ public class Update extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setSize(550, 300);
+        setResizable(false);
+
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -123,12 +125,16 @@ public class Update extends JFrame {
                 }
                 StudentsDatabase s = new StudentsDatabase("Students.txt");
                 s.readFromFile();
+
                 Student student = new Student(IDText.getText(),NameText.getText(),Integer.parseInt(AgeText.getText())
                         , Objects.requireNonNull(GenderCombo.getSelectedItem()).toString(),
                         Objects.requireNonNull(DepartmentCombo.getSelectedItem()).toString(),
                         Float.parseFloat(GPAText.getText()));
+                    student.addStudent(student);
+                    student.deleteStudentByName(str);
+                    student.deleteStudentById(str);
 
-                    student.updateStudentById(str);
+                    dispose();
                     JOptionPane.showMessageDialog(null, "Student Updated");
 dispose();
 new ViewStudents();

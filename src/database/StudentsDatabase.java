@@ -56,7 +56,6 @@ public class StudentsDatabase extends AbstractDatabase<Student> {
     @Override
     public Student getRecord(String key){
         if(!this.contains(key)) {
-            System.out.println("There is no student with the ID " + key + "!!");
             return null;
         }
         else {
@@ -72,7 +71,6 @@ public class StudentsDatabase extends AbstractDatabase<Student> {
     @Override
     public void insertRecord(Student record){
         if(this.contains(record.getId())) {
-            System.out.println("Record with key " + record.getId() + " already exists.");
             return;
         }
         records.add(record);
@@ -81,7 +79,6 @@ public class StudentsDatabase extends AbstractDatabase<Student> {
     @Override
     public void deleteRecord(String key){
         if(!this.contains(key)) {
-            System.out.println("There is no student with the ID " + key + "!!");
             return;
         }
         else{
@@ -109,7 +106,6 @@ public class StudentsDatabase extends AbstractDatabase<Student> {
             writer.close();
 
         } catch (IOException e) {
-            System.out.println("Error writing data to file " + filename + "!!");
         }
     }
 

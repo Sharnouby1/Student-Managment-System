@@ -104,42 +104,7 @@ public class Student {
             return;
         }
 
-        Scanner input = new Scanner(System.in);
-
-        System.out.print("Enter new full name: ");
-        s.fullName = input.nextLine();
-
-        System.out.print("Enter new age: ");
-        s.age = input.nextInt();
-        input.nextLine();
-
-        System.out.print("Enter new gender: ");
-        s.gender = input.nextLine();
-
-        System.out.print("Enter new department: ");
-        s.department = input.nextLine();
-
-
-        float newGpa;
-        while(true){
-            try {
-                System.out.print("Enter new GPA (0.0 to 4.0): ");
-                newGpa = input.nextFloat();
-
-                if(newGpa < 0.0 || newGpa > 4.0){
-                    System.out.println("Invalid GPA! Try again.");
-                    continue;
-                }
-                break;
-            } catch(Exception e) {
-                System.out.println("Please enter a valid number!");
-                input.nextLine();
-            }
-        }
-        s.gpa = newGpa;
-
         db.saveToFile();
-        System.out.println("Student updated successfully!");
     }
 
 
@@ -149,17 +114,6 @@ public class Student {
 
         Student s = db.getRecord(id);
 
-        if (s == null) {
-            System.out.println("Student not found!");
-        } else {
-            System.out.println("FOUND:");
-            System.out.println("ID: " + s.id);
-            System.out.println("Name: " + s.fullName);
-            System.out.println("Age: " + s.age);
-            System.out.println("Gender: " + s.gender);
-            System.out.println("Department: " + s.department);
-            System.out.println("GPA: " + s.gpa);
-        }
     }
 
     public void searchStudentByName(String fullName) {
@@ -168,17 +122,6 @@ public class Student {
 
         Student s = db.getRecord(fullName);
 
-        if (s == null) {
-            System.out.println("Student not found!");
-        } else {
-            System.out.println("FOUND:");
-            System.out.println("ID: " + s.id);
-            System.out.println("Name: " + s.fullName);
-            System.out.println("Age: " + s.age);
-            System.out.println("Gender: " + s.gender);
-            System.out.println("Department: " + s.department);
-            System.out.println("GPA: " + s.gpa);
-        }
     }
 
 
@@ -199,14 +142,12 @@ public class Student {
         db.readFromFile();
 
         if (!db.contains(key)) {
-            System.out.println("Student not found!");
             return false;
         }
 
         db.deleteRecord(key);
         db.saveToFile();
 
-        System.out.println("Student deleted successfully!");
         return true;
     }
 
@@ -215,14 +156,11 @@ public class Student {
         db.readFromFile();
 
         if (!db.contains(name)) {
-            System.out.println("Student not found!");
             return false;
         }
 
         db.deleteRecord(name);
         db.saveToFile();
-
-        System.out.println("Student deleted successfully!");
         return true;
     }
 
