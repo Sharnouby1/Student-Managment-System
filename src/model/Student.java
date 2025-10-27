@@ -143,11 +143,11 @@ public class Student {
     }
 
 
-    public void searchStudentById(String password) {
+    public void searchStudentById(String id) {
         StudentsDatabase db = new StudentsDatabase("Students.txt");
         db.readFromFile();
 
-        Student s = db.getRecord(password);
+        Student s = db.getRecord(id);
 
         if (s == null) {
             System.out.println("Student not found!");
