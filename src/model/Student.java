@@ -210,5 +210,21 @@ public class Student {
         return true;
     }
 
+    public boolean deleteStudentByName(String key) {
+        StudentsDatabase db = new StudentsDatabase("Students.txt");
+        db.readFromFile();
+
+        if (!db.contains(key)) {
+            System.out.println("Student not found!");
+            return false;
+        }
+
+        db.deleteRecord(key);
+        db.saveToFile();
+
+        System.out.println("Student deleted successfully!");
+        return true;
+    }
+
 
 }

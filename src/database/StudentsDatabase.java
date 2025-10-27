@@ -45,7 +45,7 @@ public class StudentsDatabase extends AbstractDatabase<Student> {
     @Override
     public boolean contains(String key) {
         for(int i = 0; i < this.records.size(); i++) {
-            if(this.records.get(i).getId().equals(key)) {
+            if(this.records.get(i).getId().equals(key) || this.records.get(i).getFullName().equals(key)) {
                 return true;
             }
         }
