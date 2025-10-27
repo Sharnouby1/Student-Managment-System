@@ -1,9 +1,11 @@
 package GUI;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import database.UserDatabase;
 
 public class LoginForm extends JFrame {
     public JPanel mainPanel;
@@ -30,12 +32,15 @@ public class LoginForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String username1 = username.getText().trim();
                 String password = Password.getText().trim();
-                if(username.getText().equals("admin") && Password.getText().equals("1234")) {
+                UserDatabase Databases = new UserDatabase("Users.txt");
+                Databases.readFromFile();
+                if(Databases.contains(username1, password)){
                     dispose();
                     JOptionPane.showMessageDialog(null, "Welcome Admin");
                     new MainMenu();
 
                 }
+
                 else {
                     JOptionPane.showMessageDialog(null, "Wrong Username or Password");
                 }

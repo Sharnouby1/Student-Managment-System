@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
+import model.Student;
 
 public class AddStudent extends JFrame {
     private JPanel AddStudentPanel;
@@ -138,7 +139,17 @@ public class AddStudent extends JFrame {
                     return;
                 }
                 dispose();
-                JOptionPane.showMessageDialog(null, "Student added successfully");
+                Student student = new Student(IDText.getText(),NameText.getText(),Integer.parseInt(AgeText.getText())
+                        ,Objects.requireNonNull(GenderCombo.getSelectedItem()).toString(),
+                        Objects.requireNonNull(DepartmentCombo.getSelectedItem()).toString(),
+                        Float.parseFloat(GPAText.getText()));
+                if(student.addStudent(student)){
+                    JOptionPane.showMessageDialog(null, "Student added successfully");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "The Student with ID "+IDText.getText()+" Already exists!");
+                    new AddStudent();
+                }
             }
         });
     }

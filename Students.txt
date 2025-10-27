@@ -1,0 +1,5 @@
+1234,Abdelrahman,20,Male,Computer and Communication,3.0
+1236,aw,22,Male,Computer and Communication,4.0
+6902,Boda,37,Male,Computer and Communication,2.5
+8446,Ahmed,20,Male,Computer and Communication,3.0
+8582,Ahwahw,21,Male,Computer and Communication,2.0

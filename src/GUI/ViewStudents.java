@@ -1,5 +1,7 @@
 package GUI;
 
+import model.Student;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -24,9 +26,12 @@ public class ViewStudents extends JFrame {
         model.addColumn("Gender");
         model.addColumn("Department");
         model.addColumn("GPA");
-        model.addRow(new Object[]{"1", "9123" ,"Ahmed Salah", "20", "Male", "CSE", "3.5"});
-        model.addRow(new Object[]{"2", "1234", "Sara Ali", "21", "Female", "ECE", "3.8"});
-        model.addRow(new Object[]{"3", "12322" ,"Omar Hassan", "22", "Male", "ME", "3.2"});
+        Student[] Students = new Student().viewAllStudents();
+        for(int i = 0; i < Students.length; i++) {
+            model.addRow(new Object[]{ i+1 ,Students[i].getId(),Students[i].getFullName(),
+                    Students[i].getAge(),Students[i].getGender(),Students[i].getDepartment(),
+                    Students[i].getGpa()});
+        }
         Table.setModel(model);
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
         Table.setRowSorter(sorter);
@@ -35,9 +40,9 @@ public class ViewStudents extends JFrame {
                 int id2 = Integer.parseInt(b.toString());
                 return Integer.compare(id1, id2);
             });
-            sorter.toggleSortOrder(1); // ترتيب حسب العمود رقم 1 (ID)
+            sorter.toggleSortOrder(1);
             sorter.setComparator(2, (a, b) -> a.toString().compareToIgnoreCase(b.toString()));
-            sorter.toggleSortOrder(2); // ترتيب حسب العمود رقم 2 (Name)
+            sorter.toggleSortOrder(2);
 
 
 

@@ -44,9 +44,6 @@ public class UserDatabase {
                     && user.getPassword().equals(password)) {
                 return true;
             }
-            else{
-                System.out.println("Incorrect username or password!");
-            }
         }
         return false;
     }

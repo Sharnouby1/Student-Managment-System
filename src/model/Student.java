@@ -21,11 +21,11 @@ public class Student {
         this.department = department;
         this.gpa = validateGpa(gpa);
     }
+    public Student() {}
 
 
     public float validateGpa(float gpa){
         if(gpa < 0.0f || gpa > 4.0f){
-            System.out.println("Invalid GPA value!");
             return 0.0f;
         }
         return gpa;
@@ -57,7 +57,6 @@ public class Student {
         Student s = db.getRecord(key);
 
         if (s == null) {
-            System.out.println("Student not found!");
             return;
         }
 
@@ -144,12 +143,10 @@ public class Student {
         db.readFromFile();
 
         if (db.contains(student.getId())) {
-            System.out.println("Student already exists!");
             return false;
         }
 
         db.insertRecord(student);
-        System.out.println("Student added successfully!");
         return true;
     }
 
@@ -167,5 +164,49 @@ public class Student {
 
         System.out.println("Student deleted successfully!");
         return true;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public float getGpa() {
+        return gpa;
+    }
+
+    public void setGpa(float gpa) {
+        this.gpa = gpa;
     }
 }
